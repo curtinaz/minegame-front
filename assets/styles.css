@@ -6,7 +6,7 @@ body {
     background-color: #00000044;
     width: 8vw;
     height: 8vw;
-    
+
     cursor: pointer;
     transition: 200ms;
 }
@@ -16,14 +16,20 @@ body {
     transition: 200ms;
 }
 
-.block + .block {
+.block+.block {
     margin-left: 4px;
 }
 
-.row {
+.row + .row {
     margin-top: 4px;
 }
 
+#config {
+    height: 100%;
+    background-color: #00000044;
+    margin-right: 20px;
+    padding: 20px;
+}
 
 @media only screen and (max-width: 600px) {
     .block {
