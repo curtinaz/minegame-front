@@ -1,3 +1,6 @@
+// Defines
+var bombAreas = [];
+
 // Seta as bombas
 var bomb1 = Math.floor(Math.random() * 24) + 1;
 do {
@@ -14,7 +17,7 @@ $(".block").click((e) => {
 
     var clicked = ($(e.target).prop('id')).split('-')[1];
 
-    if(clicked == bomb1 || clicked == bomb2) {
+    if(bombAreas[clicked] == true) {
         $(e.target).css('background-color', 'red');
         $(e.target).prop('disabled', 'true');
         runningGame = false;
@@ -24,3 +27,28 @@ $(".block").click((e) => {
         }
 
 })
+
+function startGame() {
+    var bombQtd = $("#minequantity").val();
+    sortBombs(bombQtd);
+    runningGame = true;
+    for(var i = 1; i <= 25; i++) {
+        $(`#block-${i}`).css('background-color', '#00000044');
+    }
+}
+
+function sortBombs(bombs = 2) {
+    bombAreas = [];
+
+    for(var i = 0; i < bombs; i++) {
+        do{
+            var choose = Math.floor(Math.random() * 24) + 1;
+        } while(bombAreas[choose] == true)
+        bombAreas[choose] = true;
+    }
+}
+
+startGame(10);
+
+// Triggers
+$("#startGame").click(startGame);
